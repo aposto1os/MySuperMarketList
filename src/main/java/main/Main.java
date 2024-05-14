@@ -17,5 +17,6 @@ public class Main {
         setup();
         MyMarket myMarket = new MyMarket(driver);
         myMarket.getHomePage();
+        System.out.println(myMarket.getDeodorantText() + ": " + myMarket.getDeodorantPrice());
     }
 }
