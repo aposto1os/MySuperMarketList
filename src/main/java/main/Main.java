@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Main {
 
     private static WebDriver driver;
+    private String deodorantMyMarket = "Dove advanced care coconut spray";
+    private static String shampooMyMarket = "wash & go Σαμπουάν classic 650ml";
 
     public static void setup(){
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
@@ -17,6 +19,6 @@ public class Main {
         setup();
         MyMarket myMarket = new MyMarket(driver);
         myMarket.getHomePage();
-        System.out.println(myMarket.getDeodorantText() + ": " + myMarket.getDeodorantPrice());
+        System.out.println(myMarket.getProductText(shampooMyMarket) + ": " + myMarket.getProductPrice(shampooMyMarket));
     }
 }

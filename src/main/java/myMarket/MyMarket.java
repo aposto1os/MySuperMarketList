@@ -10,7 +10,8 @@ public class MyMarket {
     private String homepageUrl = "https://www.mymarket.gr/";
     private By declineCookiesButton = By.id("CybotCookiebotDialogBodyButtonDecline");
     private By searchBar = By.id("main-search");
-    private String deodorant = "Dove advanced care coconut spray";
+    /*private String deodorant = "Dove advanced care coconut spray";
+    private String shampoo = "wash & go Σαμπουάν classic";*/
 
     public MyMarket(WebDriver driver) {
         this.driver = driver;
@@ -22,12 +23,20 @@ public class MyMarket {
         driver.findElement(declineCookiesButton).click();
     }
 
-    public double getDeodorantPrice(){
-        return searchFor(deodorant).getFirstResultPrice();
+    public double getProductPrice(String product){
+        return searchFor(product).getFirstResultPrice();
     }
 
-    public String getDeodorantText(){
-        return searchFor(deodorant).getFirstResultText();
+    public String getProductText(String product){
+        return searchFor(product).getFirstResultText();
+    }
+
+    public double getShampooPrice(String product){
+        return searchFor(product).getFirstResultPrice();
+    }
+
+    public String getShampooText(String product){
+        return searchFor(product).getFirstResultText();
     }
 
     private ResultsPage searchFor(String product){
