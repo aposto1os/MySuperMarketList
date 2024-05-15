@@ -1,13 +1,14 @@
 package main;
 
-import myMarket.MyMarket;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import sklavenitis.Sklavenitis;
 
 public class Main {
 
     private static WebDriver driver;
-    private String deodorantMyMarket = "Dove advanced care coconut spray";
+    private static String deodorantMyMarket = "Dove advanced care coconut spray";
+    private static String deodorantSklavenitis = "Dove advanced care coconut";
     private static String shampooMyMarket = "wash & go Σαμπουάν classic 650ml";
 
     public static void setup(){
@@ -17,8 +18,11 @@ public class Main {
 
     public static void main(String[] args) {
         setup();
-        MyMarket myMarket = new MyMarket(driver);
+        Sklavenitis sklavenitis = new Sklavenitis(driver);
+        sklavenitis.getHomePage();
+        sklavenitis.searchFor(deodorantSklavenitis);
+        /*MyMarket myMarket = new MyMarket(driver);
         myMarket.getHomePage();
-        System.out.println(myMarket.getProductText(shampooMyMarket) + ": " + myMarket.getProductPrice(shampooMyMarket));
+        System.out.println(myMarket.getProductText(shampooMyMarket) + ": " + myMarket.getProductPrice(shampooMyMarket));*/
     }
 }
