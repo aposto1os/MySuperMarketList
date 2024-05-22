@@ -19,8 +19,8 @@ public class MyMarket {
 
     public void getHomePage(){
         driver.get(homepageUrl);
-        driver.manage().window().maximize();
-        driver.findElement(declineCookiesButton).click();
+        //driver.manage().window().maximize();
+        //driver.findElement(declineCookiesButton).click();
     }
 
     public double getProductPrice(String product){
@@ -28,14 +28,6 @@ public class MyMarket {
     }
 
     public String getProductText(String product){
-        return searchFor(product).getFirstResultText();
-    }
-
-    public double getShampooPrice(String product){
-        return searchFor(product).getFirstResultPrice();
-    }
-
-    public String getShampooText(String product){
         return searchFor(product).getFirstResultText();
     }
 

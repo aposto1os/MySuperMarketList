@@ -12,6 +12,7 @@ public class ResultsPage {
     private WebDriver driver;
     private By result = By.cssSelector("header h3 a");
     private By resultPrice = By.cssSelector(".price");
+    private By searchBar = By.id("main-search");
 
     public ResultsPage(WebDriver driver) {
         this.driver = driver;
@@ -31,4 +32,5 @@ public class ResultsPage {
         price = price.replace(',','.');
         return Double.parseDouble(price);
     }
+
 }
