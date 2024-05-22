@@ -20,7 +20,7 @@ public class Main {
         setup();
         Sklavenitis sklavenitis = new Sklavenitis(driver);
         sklavenitis.getHomePage();
-        sklavenitis.searchFor(deodorantSklavenitis);
+        System.out.println(sklavenitis.getProductText(deodorantSklavenitis) + ": " + sklavenitis.getProductPrice(deodorantSklavenitis));
         /*MyMarket myMarket = new MyMarket(driver);
         myMarket.getHomePage();
         System.out.println(myMarket.getProductText(shampooMyMarket) + ": " + myMarket.getProductPrice(shampooMyMarket));*/

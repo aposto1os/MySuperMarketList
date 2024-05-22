@@ -1,6 +1,5 @@
 package sklavenitis;
 
-import myMarket.ResultsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -23,8 +22,17 @@ public class Sklavenitis {
         driver.findElement(consentCookiesButton).click();
     }
 
-    public ResultsPage searchFor(String product){
+    public double getProductPrice(String product){
+        return searchFor(product).getFirstResultPrice();
+    }
+
+    public String getProductText(String product){
+        return searchFor(product).getFirstResultText();
+    }
+
+    private ResultsPageSklavenitis searchFor(String product){
+        driver.findElement(searchBar).clear();
         driver.findElement(searchBar).sendKeys(product + Keys.ENTER);
-        return new ResultsPage(driver);
+        return new ResultsPageSklavenitis(driver);
     }
 }
