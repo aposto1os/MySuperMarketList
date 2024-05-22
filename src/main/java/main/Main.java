@@ -1,11 +1,12 @@
 package main;
 
+import myMarket.MyMarket;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import sklavenitis.Sklavenitis;
 
 import java.util.Arrays;
 import java.util.List;
-import sklavenitis.Sklavenitis;
 
 public class Main {
 
@@ -41,8 +42,16 @@ public class Main {
         Sklavenitis sklavenitis = new Sklavenitis(driver);
         sklavenitis.getHomePage();
         System.out.println(sklavenitis.getProductText(deodorantSklavenitis) + ": " + sklavenitis.getProductPrice(deodorantSklavenitis));
-        /*MyMarket myMarket = new MyMarket(driver);
+        MyMarket myMarket = new MyMarket(driver);
         myMarket.getHomePage();
-        System.out.println(myMarket.getProductText(shampooMyMarket) + ": " + myMarket.getProductPrice(shampooMyMarket));*/
+        for (String product: allProducts) {
+            System.out.println(myMarket.getProductText(product) + ": " + myMarket.getProductPrice(product));
+            totalPrice += myMarket.getProductPrice(product);
+            myMarket.getHomePage();
+        }
+
+        System.out.println("=".repeat(80));
+        System.out.println("Total price = " + totalPrice);
+        teardown();
     }
 }
