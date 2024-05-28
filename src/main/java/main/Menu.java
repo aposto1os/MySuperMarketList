@@ -4,10 +4,7 @@ import myMarket.MyMarket;
 import org.openqa.selenium.WebDriver;
 import sklavenitis.Sklavenitis;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
     private Scanner scanner;
@@ -60,45 +57,74 @@ public class Menu {
                 }
             }else break;
         }
-        System.out.println("MYMARKET:");
+        cheapestSolution();
+        /*System.out.println("MYMARKET:");
         calculateTotalForMyMarket();
         System.out.println();
         System.out.println("SKLAVENITIS:");
-        calculateTotalForSklavenitis();
+        calculateTotalForSklavenitis();*/
     }
 
-    private double calculateTotalForMyMarket(){
-        double totalPrice = 0;
+    private ArrayList<Product> calculateTotalForMyMarket(){
+        //double totalPrice = 0;
+        ArrayList<Product> myMarketList = new ArrayList<>();
 
         myMarket.getHomePage();
         for (String product: myList) {
             if (product.equals("Dove advanced care coconut")){
                 product = "Dove advanced care coconut spray";
             }
-            System.out.println(myMarket.getProductText(product) + ": " + myMarket.getProductPrice(product));
-            totalPrice += myMarket.getProductPrice(product);
+            myMarketList.add(new Product(myMarket.getProductText(product), myMarket.getProductPrice(product)));
+            //System.out.println(myMarket.getProductText(product) + ": " + myMarket.getProductPrice(product));
+            //totalPrice += myMarket.getProductPrice(product);
             myMarket.getHomePage();
         }
-        System.out.println("=".repeat(80));
-        System.out.println("Total price for MyMarket: " + totalPrice);
-        return totalPrice;
+        /*System.out.println("=".repeat(80));
+        System.out.println("Total price for MyMarket: " + totalPrice);*/
+        return myMarketList;
     }
 
-    private double calculateTotalForSklavenitis(){
-        double totalPrice = 0;
+    private ArrayList<Product> calculateTotalForSklavenitis(){
+        //double totalPrice = 0;
+        ArrayList<Product> sklavenitisList = new ArrayList<>();
         sklavenitis.getHomePage();
         for (String product: myList) {
-            System.out.println(sklavenitis.getProductText(product) + ": " + sklavenitis.getProductPrice(product));
-            totalPrice += sklavenitis.getProductPrice(product);
+            sklavenitisList.add(new Product(sklavenitis.getProductText(product), sklavenitis.getProductPrice(product)));
+            //System.out.println(sklavenitis.getProductText(product) + ": " + sklavenitis.getProductPrice(product));
+            //totalPrice += sklavenitis.getProductPrice(product);
             sklavenitis.getHomePage();
         }
-        System.out.println("=".repeat(80));
-        System.out.println("Total price for Sklavenitis: " + totalPrice);
-        return totalPrice;
+        /*System.out.println("=".repeat(80));
+        System.out.println("Total price for Sklavenitis: " + totalPrice);*/
+        return sklavenitisList;
     }
 
     private void cheapestSolution(){
-        ArrayList<String> myMarketList = new ArrayList<>();
+        ArrayList<Product> myMarketList = calculateTotalForMyMarket();
+        ArrayList<Product> sklavenitisList = calculateTotalForSklavenitis();
+        ArrayList<Product> myMarketCheapestList = new ArrayList<>();
+        ArrayList<Product> sklavenitisCheapestList = new ArrayList<>();
+        //System.out.println(myMarketList);
+        //System.out.println(sklavenitisList);
+        for (int i = 0; i < myMarketList.size(); i++) {
+            if (myMarketList.get(i).getProductPrice() < sklavenitisList.get(i).getProductPrice()){
+                myMarketCheapestList.add(myMarketList.get(i));
+            }else {
+                sklavenitisCheapestList.add(sklavenitisList.get(i));
+            }
+        }
+        System.out.println("My Market");
+        System.out.println(myMarketList);
+        System.out.println();
+        System.out.println("Sklavenitis");
+        System.out.println(sklavenitisList);
+        System.out.println();
+        System.out.println("My Market Cheapest");
+        System.out.println(myMarketCheapestList);
+        System.out.println();
+        System.out.println("Sklavenitis Cheapest");
+        System.out.println(sklavenitisCheapestList);
+        /*ArrayList<String> myMarketList = new ArrayList<>();
         ArrayList<String> sklavenitisList = new ArrayList<>();
         for (String product: myList) {
             if (myMarket.getProductPrice(product) < sklavenitis.getProductPrice(product)){
@@ -108,6 +134,6 @@ public class Menu {
             }
         }
         System.out.println(myMarketList);
-        System.out.println(sklavenitisList);
+        System.out.println(sklavenitisList);*/
     }
 }
