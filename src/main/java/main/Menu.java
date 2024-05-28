@@ -12,11 +12,15 @@ public class Menu {
     private MyMarket myMarket;
     private Sklavenitis sklavenitis;
     private List<String> myList = new ArrayList<>();
-    private static List<String> allProducts = Arrays.asList("tunaMyMarket, riceMyMarket, dishwasherCapsMyMarket, laundryCapsMyMarket" +
-            ", butterMyMarket, noodlesMyMarket, mayoMyMarket, toastBreadMyMarket, shampooMyMarket, deodorantMyMarket");
     private static String deodorant = "Dove advanced care coconut";
     private static String shampoo = "wash & go Σαμπουάν classic 650ml";
     private static String toastBread = "ψωμί τοστ Παπαδοπούλου γευση2 σταρένιο 700gr";
+    private static String mayo = "hellmann's light Μαγιονέζα 450ml";
+    private static final String noodlesCurry = "Μαggi noodles cup Κάρυ";
+    private static String butter = "βούτυρο lurpak soft 225gr";
+    private static String tuna = "Rio Mare Τόνος Σε Ελαιόλαδο 2x160gr";
+    private static List<String> allProducts = Arrays.asList("tuna, riceMyMarket, dishwasherCapsMyMarket, laundryCapsMyMarket" +
+            ", butter, noodlesCurry, mayo, toastBread, shampoo, deodorant");
 
     public Menu(Scanner scanner, WebDriver driver) {
         this.scanner = scanner;
@@ -28,13 +32,17 @@ public class Menu {
     public void menu(){
         int selection = 0;
         while (true){
-            if (selection!=5){
+            if (selection!=9){
                 System.out.println("Please select a product (By number)");
                 System.out.println("1. Deodorant");
                 System.out.println("2. Shampoo");
                 System.out.println("3. Toast Bread");
-                System.out.println("4. All Products");
-                System.out.println("5. List Completed");
+                System.out.println("4. Mayo");
+                System.out.println("5. Noodles Curry");
+                System.out.println("6. Butter");
+                System.out.println("7. Tuna");
+                System.out.println("8. All Products");
+                System.out.println("9. List Completed");
                 System.out.print("Selection: ");
                 selection = scanner.nextInt();
                 switch (selection){
@@ -52,21 +60,37 @@ public class Menu {
                         myList.add(toastBread);
                         System.out.println("Toast bread added to list");
                         System.out.println();
+                        break;
                     case 4:
+                        myList.add(mayo);
+                        System.out.println("Mayo added to list");
+                        System.out.println();
+                        break;
+                    case 5:
+                        myList.add(noodlesCurry);
+                        System.out.println("Noodles Curry added to list");
+                        System.out.println();
+                        break;
+                    case 6:
+                        myList.add(butter);
+                        System.out.println("Butter added to list");
+                        System.out.println();
+                        break;
+                    case 7:
+                        myList.add(tuna);
+                        System.out.println("Tuna added to list");
+                        System.out.println();
+                        break;
+                    case 8:
                         myList = allProducts;
+                        break;
                 }
             }else break;
         }
         cheapestSolution();
-        /*System.out.println("MYMARKET:");
-        calculateTotalForMyMarket();
-        System.out.println();
-        System.out.println("SKLAVENITIS:");
-        calculateTotalForSklavenitis();*/
     }
 
     private ArrayList<Product> calculateTotalForMyMarket(){
-        //double totalPrice = 0;
         ArrayList<Product> myMarketList = new ArrayList<>();
 
         myMarket.getHomePage();
@@ -75,27 +99,31 @@ public class Menu {
                 product = "Dove advanced care coconut spray";
             }
             myMarketList.add(new Product(myMarket.getProductText(product), myMarket.getProductPrice(product)));
-            //System.out.println(myMarket.getProductText(product) + ": " + myMarket.getProductPrice(product));
-            //totalPrice += myMarket.getProductPrice(product);
             myMarket.getHomePage();
         }
-        /*System.out.println("=".repeat(80));
-        System.out.println("Total price for MyMarket: " + totalPrice);*/
         return myMarketList;
     }
 
+    /**
+     * if a product is missing then, gets adds the word MISSING to the product name and
+     * gets the price from MyMarket.
+     */
     private ArrayList<Product> calculateTotalForSklavenitis(){
-        //double totalPrice = 0;
         ArrayList<Product> sklavenitisList = new ArrayList<>();
         sklavenitis.getHomePage();
         for (String product: myList) {
+            if (product.equals("ψωμί τοστ Παπαδοπούλου γευση2 σταρένιο 700gr")){
+                product = "ψωμί τοστ παπαδοπουλου 700gr";
+            }
+            if (product.equals("Μαggi noodles cup Κάρυ")){
+                myMarket.getHomePage();
+                sklavenitisList.add(new Product("Noodles MISSING", myMarket.getProductPrice(product)));
+                sklavenitis.getHomePage();
+                continue;
+            }
             sklavenitisList.add(new Product(sklavenitis.getProductText(product), sklavenitis.getProductPrice(product)));
-            //System.out.println(sklavenitis.getProductText(product) + ": " + sklavenitis.getProductPrice(product));
-            //totalPrice += sklavenitis.getProductPrice(product);
             sklavenitis.getHomePage();
         }
-        /*System.out.println("=".repeat(80));
-        System.out.println("Total price for Sklavenitis: " + totalPrice);*/
         return sklavenitisList;
     }
 
@@ -104,8 +132,6 @@ public class Menu {
         ArrayList<Product> sklavenitisList = calculateTotalForSklavenitis();
         ArrayList<Product> myMarketCheapestList = new ArrayList<>();
         ArrayList<Product> sklavenitisCheapestList = new ArrayList<>();
-        //System.out.println(myMarketList);
-        //System.out.println(sklavenitisList);
         for (int i = 0; i < myMarketList.size(); i++) {
             if (myMarketList.get(i).getProductPrice() < sklavenitisList.get(i).getProductPrice()){
                 myMarketCheapestList.add(myMarketList.get(i));
@@ -124,16 +150,5 @@ public class Menu {
         System.out.println();
         System.out.println("Sklavenitis Cheapest");
         System.out.println(sklavenitisCheapestList);
-        /*ArrayList<String> myMarketList = new ArrayList<>();
-        ArrayList<String> sklavenitisList = new ArrayList<>();
-        for (String product: myList) {
-            if (myMarket.getProductPrice(product) < sklavenitis.getProductPrice(product)){
-                myMarketList.add(product);
-            }else {
-                sklavenitisList.add(product);
-            }
-        }
-        System.out.println(myMarketList);
-        System.out.println(sklavenitisList);*/
     }
 }
