@@ -19,7 +19,7 @@ public class MyMarket {
 
     public void getHomePage(){
         driver.get(homepageUrl);
-        //driver.manage().window().maximize();
+        driver.manage().window().maximize();
         //driver.findElement(declineCookiesButton).click();
     }
 

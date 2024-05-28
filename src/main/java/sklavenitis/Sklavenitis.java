@@ -18,8 +18,8 @@ public class Sklavenitis {
 
     public void getHomePage(){
         driver.get(homepageUrl);
-        driver.manage().window().maximize();
-        driver.findElement(consentCookiesButton).click();
+        /*driver.manage().window().maximize();
+        driver.findElement(consentCookiesButton).click();*/
     }
 
     public double getProductPrice(String product){
