@@ -133,22 +133,34 @@ public class Menu {
         ArrayList<Product> myMarketCheapestList = new ArrayList<>();
         ArrayList<Product> sklavenitisCheapestList = new ArrayList<>();
         for (int i = 0; i < myMarketList.size(); i++) {
-            if (myMarketList.get(i).getProductPrice() < sklavenitisList.get(i).getProductPrice()){
+            if (myMarketList.get(i).getProductPrice() <= sklavenitisList.get(i).getProductPrice()){
                 myMarketCheapestList.add(myMarketList.get(i));
             }else {
                 sklavenitisCheapestList.add(sklavenitisList.get(i));
             }
         }
         System.out.println("My Market");
-        System.out.println(myMarketList);
+        printShoppingList(myMarketList);
         System.out.println();
         System.out.println("Sklavenitis");
-        System.out.println(sklavenitisList);
+        printShoppingList(sklavenitisList);
         System.out.println();
         System.out.println("My Market Cheapest");
-        System.out.println(myMarketCheapestList);
+        printShoppingList(myMarketCheapestList);
         System.out.println();
         System.out.println("Sklavenitis Cheapest");
-        System.out.println(sklavenitisCheapestList);
+        printShoppingList(sklavenitisCheapestList);
+    }
+
+    private void printShoppingList(ArrayList<Product> list){
+        double total = 0.0;
+        System.out.println("-".repeat(99));
+        for (Product product : list) {
+            System.out.printf("| %-85s : %-7.2f |%n",product.getProductName(),product.getProductPrice());
+            total += product.getProductPrice();
+        }
+        System.out.println("=".repeat(99));
+        System.out.printf("| %-85s : %-7.2f |%n","Total price: " , total);
+        System.out.println("-".repeat(99));
     }
 }
