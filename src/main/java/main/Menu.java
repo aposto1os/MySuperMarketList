@@ -128,6 +128,7 @@ public class Menu {
     }
 
     private void cheapestSolution(){
+        double totalOfCheapest = 0;
         ArrayList<Product> myMarketList = calculateTotalForMyMarket();
         ArrayList<Product> sklavenitisList = calculateTotalForSklavenitis();
         ArrayList<Product> myMarketCheapestList = new ArrayList<>();
@@ -150,6 +151,14 @@ public class Menu {
         System.out.println();
         System.out.println("Sklavenitis Cheapest");
         printShoppingList(sklavenitisCheapestList);
+        System.out.println();
+        for (Product product:myMarketCheapestList) {
+            totalOfCheapest += product.getProductPrice();
+        }
+        for (Product product:sklavenitisCheapestList) {
+            totalOfCheapest += product.getProductPrice();
+        }
+        System.out.println("CHEAPEST SOLUTION TOTAL: " + totalOfCheapest);
     }
 
     private void printShoppingList(ArrayList<Product> list){
