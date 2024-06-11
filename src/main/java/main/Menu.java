@@ -19,6 +19,9 @@ public class Menu {
     private static final String noodlesCurry = "Μαggi noodles cup Κάρυ";
     private static String butter = "βούτυρο lurpak soft 225gr";
     private static String tuna = "Rio Mare Τόνος Σε Ελαιόλαδο 2x160gr";
+    private static String rice = "ρύζι parboiled ben's σακουλακι";
+    private static String toothpaste = "colgate οδοντοκρεμα triple action";
+    //private static String dishwasherCaps = "fairy caps";
     private static List<String> allProducts = Arrays.asList("tuna, riceMyMarket, dishwasherCapsMyMarket, laundryCapsMyMarket" +
             ", butter, noodlesCurry, mayo, toastBread, shampoo, deodorant");
 
@@ -32,7 +35,7 @@ public class Menu {
     public void menu(){
         int selection = 0;
         while (true){
-            if (selection!=9){
+            if (selection!=11){
                 System.out.println("Please select a product (By number)");
                 System.out.println("1. Deodorant");
                 System.out.println("2. Shampoo");
@@ -41,8 +44,10 @@ public class Menu {
                 System.out.println("5. Noodles Curry");
                 System.out.println("6. Butter");
                 System.out.println("7. Tuna");
-                System.out.println("8. All Products");
-                System.out.println("9. List Completed");
+                System.out.println("8. Rice");
+                System.out.println("9. Toothpaste");
+                System.out.println("10. All Products");
+                System.out.println("11. List Completed");
                 System.out.print("Selection: ");
                 selection = scanner.nextInt();
                 switch (selection){
@@ -82,6 +87,16 @@ public class Menu {
                         System.out.println();
                         break;
                     case 8:
+                        myList.add(rice);
+                        System.out.println("rice added to list");
+                        System.out.println();
+                        break;
+                    case 9:
+                        myList.add(toothpaste);
+                        System.out.println("toothpaste added to list");
+                        System.out.println();
+                        break;
+                    case 10:
                         myList = allProducts;
                         break;
                 }

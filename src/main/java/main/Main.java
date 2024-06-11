@@ -10,9 +10,9 @@ public class Main {
     private static WebDriver driver;
     private static Scanner scanner = new Scanner(System.in);
     private static String laundryCapsMyMarket = "ariel κάψουλες 54τεμ";
-    private static String dishwasherCapsMyMarket = "fairy caps";
-    private static String riceMyMarket = "ρύζι parboiled ben's 500gr";
-    //private static String nounouGoudaCheese = "nounou gouda φραντζόλα";
+
+
+
 
     private static void setup(){
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
