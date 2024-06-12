@@ -1,5 +1,6 @@
 package main;
 
+import ab.AB;
 import myMarket.MyMarket;
 import org.openqa.selenium.WebDriver;
 import sklavenitis.Sklavenitis;
@@ -11,6 +12,7 @@ public class Menu {
     private WebDriver driver;
     private MyMarket myMarket;
     private Sklavenitis sklavenitis;
+    private AB ab;
     private List<String> myList = new ArrayList<>();
     private static String deodorant = "Dove advanced care coconut";
     private static String shampoo = "wash & go Σαμπουάν classic 650ml";
@@ -30,6 +32,7 @@ public class Menu {
         this.driver = driver;
         myMarket = new MyMarket(driver);
         sklavenitis = new Sklavenitis(driver);
+        ab = new AB(driver);
     }
 
     public void menu(){
