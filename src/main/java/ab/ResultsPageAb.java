@@ -28,7 +28,7 @@ public class ResultsPageAb {
     public double getFirstResultPrice(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(resultPriceInt));
-        String price = driver.findElement(resultPriceInt).getText() + driver.findElement(resultPriceDec);
+        String price = driver.findElement(resultPriceInt).getText() + "," + driver.findElement(resultPriceDec).getText();
         price = price.replaceAll("[^0-9,]", "");
         price = price.replace(',','.');
         return Double.parseDouble(price);

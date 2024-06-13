@@ -122,6 +122,23 @@ public class Menu {
         return myMarketList;
     }
 
+    private ArrayList<Product> calculateTotalForAB(){
+        ArrayList<Product> aBList = new ArrayList<>();
+
+        ab.getHomePage();
+        for (String product: myList) {
+            if (product.equals(shampoo)){
+                product = "Σαμπουάν και Conditioner 2σε1 Classic 650ml";
+            }
+            if (product.equals(noodlesCurry)){
+                product = "Noodle Cup Magic Asia Κάρυ 63g";
+            }
+            aBList.add(new Product(ab.getProductText(product), ab.getProductPrice(product)));
+            ab.getHomePage();
+        }
+        return aBList;
+    }
+
     /**
      * if a product is missing then, gets adds the word MISSING to the product name and
      * gets the price from MyMarket.
@@ -149,13 +166,23 @@ public class Menu {
         double totalOfCheapest = 0;
         ArrayList<Product> myMarketList = calculateTotalForMyMarket();
         ArrayList<Product> sklavenitisList = calculateTotalForSklavenitis();
+        ArrayList<Product> aBList = calculateTotalForAB();
         ArrayList<Product> myMarketCheapestList = new ArrayList<>();
         ArrayList<Product> sklavenitisCheapestList = new ArrayList<>();
+        ArrayList<Product> aBCheapestList = new ArrayList<>();
         for (int i = 0; i < myMarketList.size(); i++) {
             if (myMarketList.get(i).getProductPrice() <= sklavenitisList.get(i).getProductPrice()){
-                myMarketCheapestList.add(myMarketList.get(i));
-            }else {
+                if (myMarketList.get(i).getProductPrice() <= aBList.get(i).getProductPrice()){
+                    myMarketCheapestList.add(myMarketList.get(i));
+                }else {
+                    aBCheapestList.add(aBList.get(i));
+                }
+
+            }else if (sklavenitisList.get(i).getProductPrice() <= aBList.get(i).getProductPrice()){
                 sklavenitisCheapestList.add(sklavenitisList.get(i));
+            }
+            else {
+                aBCheapestList.add(aBList.get(i));
             }
         }
         System.out.println("My Market");
@@ -164,18 +191,26 @@ public class Menu {
         System.out.println("Sklavenitis");
         printShoppingList(sklavenitisList);
         System.out.println();
+        System.out.println("AB");
+        printShoppingList(aBList);
         System.out.println("My Market Cheapest");
         printShoppingList(myMarketCheapestList);
         System.out.println();
         System.out.println("Sklavenitis Cheapest");
         printShoppingList(sklavenitisCheapestList);
         System.out.println();
+        System.out.println("AB Cheapest");
+        printShoppingList(aBCheapestList);
         for (Product product:myMarketCheapestList) {
             totalOfCheapest += product.getProductPrice();
         }
         for (Product product:sklavenitisCheapestList) {
             totalOfCheapest += product.getProductPrice();
         }
+        for (Product product:aBCheapestList) {
+            totalOfCheapest += product.getProductPrice();
+        }
+
         System.out.println("CHEAPEST SOLUTION TOTAL: " + totalOfCheapest);
     }
 

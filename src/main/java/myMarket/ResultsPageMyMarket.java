@@ -7,14 +7,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ResultsPage {
+public class ResultsPageMyMarket {
 
     private WebDriver driver;
     private By result = By.cssSelector("header h3 a");
     private By resultPrice = By.cssSelector(".price");
     private By searchBar = By.id("main-search");
 
-    public ResultsPage(WebDriver driver) {
+    public ResultsPageMyMarket(WebDriver driver) {
         this.driver = driver;
     }
 

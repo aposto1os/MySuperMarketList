@@ -31,8 +31,8 @@ public class MyMarket {
         return searchFor(product).getFirstResultText();
     }
 
-    private ResultsPage searchFor(String product){
+    private ResultsPageMyMarket searchFor(String product){
         driver.findElement(searchBar).sendKeys(product + Keys.ENTER);
-        return new ResultsPage(driver);
+        return new ResultsPageMyMarket(driver);
     }
 }

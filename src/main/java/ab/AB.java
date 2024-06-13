@@ -1,6 +1,5 @@
 package ab;
 
-import myMarket.ResultsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -32,8 +31,8 @@ public class AB {
         return searchFor(product).getFirstResultText();
     }
 
-    private ResultsPage searchFor(String product){
+    private ResultsPageAb searchFor(String product){
         driver.findElement(searchBar).sendKeys(product + Keys.ENTER);
-        return new ResultsPage(driver);
+        return new ResultsPageAb(driver);
     }
 }
