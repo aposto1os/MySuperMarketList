@@ -7,6 +7,11 @@ import java.util.Scanner;
 
 //TODO: SPECIFY QUANTITIES
 //TODO: resolve 1+1 offers (sklavenitis)
+//TODO: ADD PARMESAN, CHEESES, MILK  ETC
+//TODO: ADD TESTING
+//TODO: ADD SELENIUM MANAGER
+//TODO: ADD GALAXIAS
+//TODO: EQUAL PRODUCTS
 
 public class Main {
 
