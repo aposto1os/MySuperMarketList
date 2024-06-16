@@ -1,5 +1,6 @@
 package myMarket;
 
+import main.Product;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,19 +19,21 @@ public class ResultsPageMyMarket {
         this.driver = driver;
     }
 
-    public String getFirstResultText(){
+    public Product getFirstResultProduct(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(result));
-        return driver.findElement(result).getText();
-    }
-
-    public double getFirstResultPrice(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(resultPrice));
         String price = driver.findElement(resultPrice).getText();
         price = price.replaceAll("[^0-9,]", "");
         price = price.replace(',','.');
-        return Double.parseDouble(price);
+        return new Product(driver.findElement(result).getText(), Double.parseDouble(price));
     }
+
+    /*public String getFirstResultText(Product product){
+        return product.getProductName();
+    }
+
+    public double getFirstResultPrice(Product product){
+        return product.getProductPrice();
+    }*/
 
 }

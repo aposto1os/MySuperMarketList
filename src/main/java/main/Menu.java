@@ -119,7 +119,7 @@ public class Menu {
             if (product.equals("Dove advanced care coconut")){
                 product = "Dove advanced care coconut spray";
             }
-            myMarketList.add(new Product(myMarket.getProductText(product), myMarket.getProductPrice(product)));
+            myMarketList.add(myMarket.searchFor(product).getFirstResultProduct());
             myMarket.getHomePage();
         }
         return myMarketList;
@@ -130,7 +130,7 @@ public class Menu {
 
         kritikos.getHomePage();
         for (String product: myList) {
-            kritikosList.add(new Product(kritikos.getProductText(product), kritikos.getProductPrice(product)));
+            kritikosList.add(kritikos.searchFor(product).getFirstResultProduct());
             kritikos.getHomePage();
         }
         return kritikosList;
@@ -147,7 +147,7 @@ public class Menu {
             if (product.equals(noodlesCurry)){
                 product = "Noodle Cup Magic Asia Κάρυ 63g";
             }
-            aBList.add(new Product(ab.getProductText(product), ab.getProductPrice(product)));
+            aBList.add(ab.searchFor(product).getFirstResultProduct());
             ab.getHomePage();
         }
         return aBList;
@@ -166,11 +166,11 @@ public class Menu {
             }
             if (product.equals("Μαggi noodles cup Κάρυ")){
                 myMarket.getHomePage();
-                sklavenitisList.add(new Product("Noodles MISSING", myMarket.getProductPrice(product)));
+                sklavenitisList.add(new Product("Noodles MISSING", myMarket.searchFor(product).getFirstResultProduct().getProductPrice()));
                 sklavenitis.getHomePage();
                 continue;
             }
-            sklavenitisList.add(new Product(sklavenitis.getProductText(product), sklavenitis.getProductPrice(product)));
+            sklavenitisList.add(sklavenitis.searchFor(product).getFirstResultProduct());
             sklavenitis.getHomePage();
         }
         return sklavenitisList;

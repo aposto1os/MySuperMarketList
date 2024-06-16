@@ -21,15 +21,15 @@ public class Kritikos {
         //driver.findElement(declineCookiesButton).click();
     }
 
-    public double getProductPrice(String product){
+    /*public double getProductPrice(String product){
         return searchFor(product).getFirstResultPrice();
     }
 
     public String getProductText(String product){
         return searchFor(product).getFirstResultText();
-    }
+    }*/
 
-    private ResultsPageKritikos searchFor(String product){
+    public ResultsPageKritikos searchFor(String product){
         driver.findElement(searchBar).clear();
         driver.findElement(searchBar).sendKeys(product + Keys.ENTER);
         return new ResultsPageKritikos(driver);

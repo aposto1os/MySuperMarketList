@@ -23,15 +23,15 @@ public class MyMarket {
         //driver.findElement(declineCookiesButton).click();
     }
 
-    public double getProductPrice(String product){
+    /*public double getProductPrice(String product){
         return searchFor(product).getFirstResultPrice();
     }
 
     public String getProductText(String product){
         return searchFor(product).getFirstResultText();
-    }
+    }*/
 
-    private ResultsPageMyMarket searchFor(String product){
+    public ResultsPageMyMarket searchFor(String product){
         driver.findElement(searchBar).sendKeys(product + Keys.ENTER);
         return new ResultsPageMyMarket(driver);
     }

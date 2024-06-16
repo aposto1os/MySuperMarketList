@@ -23,15 +23,15 @@ public class AB {
         //driver.findElement(declineCookiesButton).click();
     }
 
-    public double getProductPrice(String product){
+    /*public double getProductPrice(String product){
         return searchFor(product).getFirstResultPrice();
     }
 
     public String getProductText(String product){
         return searchFor(product).getFirstResultText();
-    }
+    }*/
 
-    private ResultsPageAb searchFor(String product){
+    public ResultsPageAb searchFor(String product){
         driver.findElement(searchBar).sendKeys(product + Keys.ENTER);
         return new ResultsPageAb(driver);
     }
