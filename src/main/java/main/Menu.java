@@ -114,13 +114,12 @@ public class Menu {
     private ArrayList<Product> calculateTotalForMyMarket(){
         ArrayList<Product> myMarketList = new ArrayList<>();
 
-        myMarket.getHomePage();
         for (String product: myList) {
+            myMarket.getHomePage();
             if (product.equals("Dove advanced care coconut")){
                 product = "Dove advanced care coconut spray";
             }
             myMarketList.add(myMarket.searchFor(product).getFirstResultProduct());
-            myMarket.getHomePage();
         }
         return myMarketList;
     }
@@ -128,10 +127,9 @@ public class Menu {
     private ArrayList<Product> calculateTotalForKritikos(){
         ArrayList<Product> kritikosList = new ArrayList<>();
 
-        kritikos.getHomePage();
         for (String product: myList) {
-            kritikosList.add(kritikos.searchFor(product).getFirstResultProduct());
             kritikos.getHomePage();
+            kritikosList.add(kritikos.searchFor(product).getFirstResultProduct());
         }
         return kritikosList;
     }
@@ -139,8 +137,8 @@ public class Menu {
     private ArrayList<Product> calculateTotalForAB(){
         ArrayList<Product> aBList = new ArrayList<>();
 
-        ab.getHomePage();
         for (String product: myList) {
+            ab.getHomePage();
             if (product.equals(shampoo)){
                 product = "Σαμπουάν και Conditioner 2σε1 Classic 650ml";
             }
@@ -148,7 +146,6 @@ public class Menu {
                 product = "Noodle Cup Magic Asia Κάρυ 63g";
             }
             aBList.add(ab.searchFor(product).getFirstResultProduct());
-            ab.getHomePage();
         }
         return aBList;
     }
@@ -159,19 +156,18 @@ public class Menu {
      */
     private ArrayList<Product> calculateTotalForSklavenitis(){
         ArrayList<Product> sklavenitisList = new ArrayList<>();
-        sklavenitis.getHomePage();
+
         for (String product: myList) {
+            sklavenitis.getHomePage();
             if (product.equals("ψωμί τοστ Παπαδοπούλου γευση2 σταρένιο 700gr")){
                 product = "ψωμί τοστ παπαδοπουλου 700gr";
             }
             if (product.equals("Μαggi noodles cup Κάρυ")){
                 myMarket.getHomePage();
                 sklavenitisList.add(new Product("Noodles MISSING", myMarket.searchFor(product).getFirstResultProduct().getProductPrice()));
-                sklavenitis.getHomePage();
                 continue;
             }
             sklavenitisList.add(sklavenitis.searchFor(product).getFirstResultProduct());
-            sklavenitis.getHomePage();
         }
         return sklavenitisList;
     }
@@ -228,6 +224,7 @@ public class Menu {
         printShoppingList(sklavenitisCheapestList);
         System.out.println();
         System.out.println("AB Cheapest");
+        printShoppingList(aBCheapestList);
         System.out.println();
         System.out.println("Kritikos Cheapest");
         printShoppingList(kritikosCheapestList);

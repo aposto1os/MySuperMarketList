@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.Scanner;
 
+//TODO: CHECK ALL PRODUCTS FOR KRITIKOS
 //TODO: SPECIFY QUANTITIES
 //TODO: resolve 1+1 offers (sklavenitis)
 //TODO: ADD PARMESAN, CHEESES, MILK  ETC
@@ -12,13 +13,12 @@ import java.util.Scanner;
 //TODO: ADD SELENIUM MANAGER
 //TODO: EQUAL PRODUCTS
 //TODO: REFACTOR MENU.CHEAPESTSOLUTION
-//TODO: FIX DOUBLE SEARCH BUG
+
 
 public class Main {
 
     private static WebDriver driver;
     private static Scanner scanner = new Scanner(System.in);
-    //private static String laundryCapsMyMarket = "ariel κάψουλες 54τεμ";
 
     private static void setup(){
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");

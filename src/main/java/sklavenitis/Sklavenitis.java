@@ -22,14 +22,6 @@ public class Sklavenitis {
         driver.findElement(consentCookiesButton).click();*/
     }
 
-    /*public double getProductPrice(String product){
-        return searchFor(product).getFirstResultPrice();
-    }
-
-    public String getProductText(String product){
-        return searchFor(product).getFirstResultText();
-    }*/
-
     public ResultsPageSklavenitis searchFor(String product){
         driver.findElement(searchBar).clear();
         driver.findElement(searchBar).sendKeys(product + Keys.ENTER);

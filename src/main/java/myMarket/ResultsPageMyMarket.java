@@ -13,7 +13,6 @@ public class ResultsPageMyMarket {
     private WebDriver driver;
     private By result = By.cssSelector("header h3 a");
     private By resultPrice = By.cssSelector(".price");
-    private By searchBar = By.id("main-search");
 
     public ResultsPageMyMarket(WebDriver driver) {
         this.driver = driver;
@@ -27,13 +26,4 @@ public class ResultsPageMyMarket {
         price = price.replace(',','.');
         return new Product(driver.findElement(result).getText(), Double.parseDouble(price));
     }
-
-    /*public String getFirstResultText(Product product){
-        return product.getProductName();
-    }
-
-    public double getFirstResultPrice(Product product){
-        return product.getProductPrice();
-    }*/
-
 }
