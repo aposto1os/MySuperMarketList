@@ -1,6 +1,5 @@
 package kritikos;
 
-import myMarket.ResultsPageMyMarket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,10 +8,8 @@ public class Kritikos {
 
     private WebDriver driver;
     private String homepageUrl = "https://kritikos-sm.gr/";
-    private By declineCookiesButton = By.id("CybotCookiebotDialogBodyButtonDecline");
-    private By searchBar = By.id("main-search");
-    /*private String deodorant = "Dove advanced care coconut spray";
-    private String shampoo = "wash & go Σαμπουάν classic";*/
+    private By declineCookiesButton = By.cssSelector(".Buttons_secondaryButton__ruBI_");
+    private By searchBar = By.cssSelector(".SearchBar_input__eMa_Q");
 
     public Kritikos(WebDriver driver) {
         this.driver = driver;
@@ -32,8 +29,9 @@ public class Kritikos {
         return searchFor(product).getFirstResultText();
     }
 
-    private ResultsPageMyMarket searchFor(String product){
+    private ResultsPageKritikos searchFor(String product){
+        driver.findElement(searchBar).clear();
         driver.findElement(searchBar).sendKeys(product + Keys.ENTER);
-        return new ResultsPageMyMarket(driver);
+        return new ResultsPageKritikos(driver);
     }
 }

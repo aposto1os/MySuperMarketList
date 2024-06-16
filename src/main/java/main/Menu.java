@@ -1,6 +1,7 @@
 package main;
 
 import ab.AB;
+import kritikos.Kritikos;
 import myMarket.MyMarket;
 import org.openqa.selenium.WebDriver;
 import sklavenitis.Sklavenitis;
@@ -13,6 +14,7 @@ public class Menu {
     private MyMarket myMarket;
     private Sklavenitis sklavenitis;
     private AB ab;
+    private Kritikos kritikos;
     private List<String> myList = new ArrayList<>();
     private static String deodorant = "Dove advanced care coconut";
     private static String shampoo = "wash & go Σαμπουάν classic 650ml";
@@ -33,6 +35,7 @@ public class Menu {
         myMarket = new MyMarket(driver);
         sklavenitis = new Sklavenitis(driver);
         ab = new AB(driver);
+        kritikos = new Kritikos(driver);
     }
 
     public void menu(){
@@ -122,6 +125,17 @@ public class Menu {
         return myMarketList;
     }
 
+    private ArrayList<Product> calculateTotalForKritikos(){
+        ArrayList<Product> kritikosList = new ArrayList<>();
+
+        kritikos.getHomePage();
+        for (String product: myList) {
+            kritikosList.add(new Product(kritikos.getProductText(product), kritikos.getProductPrice(product)));
+            kritikos.getHomePage();
+        }
+        return kritikosList;
+    }
+
     private ArrayList<Product> calculateTotalForAB(){
         ArrayList<Product> aBList = new ArrayList<>();
 
@@ -167,24 +181,36 @@ public class Menu {
         ArrayList<Product> myMarketList = calculateTotalForMyMarket();
         ArrayList<Product> sklavenitisList = calculateTotalForSklavenitis();
         ArrayList<Product> aBList = calculateTotalForAB();
+        ArrayList<Product> kritikosList = calculateTotalForKritikos();
         ArrayList<Product> myMarketCheapestList = new ArrayList<>();
         ArrayList<Product> sklavenitisCheapestList = new ArrayList<>();
         ArrayList<Product> aBCheapestList = new ArrayList<>();
+        ArrayList<Product> kritikosCheapestList = new ArrayList<>();
         for (int i = 0; i < myMarketList.size(); i++) {
-            if (myMarketList.get(i).getProductPrice() <= sklavenitisList.get(i).getProductPrice()){
-                if (myMarketList.get(i).getProductPrice() <= aBList.get(i).getProductPrice()){
-                    myMarketCheapestList.add(myMarketList.get(i));
-                }else {
-                    aBCheapestList.add(aBList.get(i));
-                }
+            ArrayList<Double> prices = new ArrayList<>();
+            prices.add(myMarketList.get(i).getProductPrice());
+            prices.add(sklavenitisList.get(i).getProductPrice());
+            prices.add(aBList.get(i).getProductPrice());
+            prices.add(kritikosList.get(i).getProductPrice());
+            Double minValue = Collections.min(prices);
+            Integer minIndex = prices.indexOf(minValue);
 
-            }else if (sklavenitisList.get(i).getProductPrice() <= aBList.get(i).getProductPrice()){
-                sklavenitisCheapestList.add(sklavenitisList.get(i));
-            }
-            else {
-                aBCheapestList.add(aBList.get(i));
+            switch (minIndex){
+                case 0:
+                    myMarketCheapestList.add(myMarketList.get(i));
+                    break;
+                case 1:
+                    sklavenitisCheapestList.add(sklavenitisList.get(i));
+                    break;
+                case 2:
+                    aBCheapestList.add(aBList.get(i));
+                    break;
+                case 3:
+                    kritikosCheapestList.add(kritikosList.get(i));
+                    break;
             }
         }
+
         System.out.println("My Market");
         printShoppingList(myMarketList);
         System.out.println();
@@ -193,6 +219,8 @@ public class Menu {
         System.out.println();
         System.out.println("AB");
         printShoppingList(aBList);
+        System.out.println("Kritikos");
+        printShoppingList(kritikosList);
         System.out.println("My Market Cheapest");
         printShoppingList(myMarketCheapestList);
         System.out.println();
@@ -200,7 +228,9 @@ public class Menu {
         printShoppingList(sklavenitisCheapestList);
         System.out.println();
         System.out.println("AB Cheapest");
-        printShoppingList(aBCheapestList);
+        System.out.println();
+        System.out.println("Kritikos Cheapest");
+        printShoppingList(kritikosCheapestList);
         for (Product product:myMarketCheapestList) {
             totalOfCheapest += product.getProductPrice();
         }
@@ -208,6 +238,9 @@ public class Menu {
             totalOfCheapest += product.getProductPrice();
         }
         for (Product product:aBCheapestList) {
+            totalOfCheapest += product.getProductPrice();
+        }
+        for (Product product:kritikosCheapestList) {
             totalOfCheapest += product.getProductPrice();
         }
 

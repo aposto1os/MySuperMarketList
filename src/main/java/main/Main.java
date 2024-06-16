@@ -10,17 +10,15 @@ import java.util.Scanner;
 //TODO: ADD PARMESAN, CHEESES, MILK  ETC
 //TODO: ADD TESTING
 //TODO: ADD SELENIUM MANAGER
-//TODO: ADD GALAXIAS
 //TODO: EQUAL PRODUCTS
+//TODO: REFACTOR MENU.CHEAPESTSOLUTION
+//TODO: FIX DOUBLE SEARCH BUG
 
 public class Main {
 
     private static WebDriver driver;
     private static Scanner scanner = new Scanner(System.in);
-    private static String laundryCapsMyMarket = "ariel κάψουλες 54τεμ";
-
-
-
+    //private static String laundryCapsMyMarket = "ariel κάψουλες 54τεμ";
 
     private static void setup(){
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
@@ -35,8 +33,8 @@ public class Main {
 
     public static void main(String[] args) {
         setup();
-        Menu menu = new Menu(scanner, driver);
-        menu.menu();
+        Menu mainMenu = new Menu(scanner, driver);
+        mainMenu.menu();
         teardown();
     }
 }
