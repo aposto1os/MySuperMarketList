@@ -5,10 +5,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.Scanner;
 
-//TODO: CHECK ALL PRODUCTS FOR KRITIKOS
 //TODO: SPECIFY QUANTITIES
 //TODO: resolve 1+1 offers (sklavenitis)
-//TODO: ADD PARMESAN, CHEESES, MILK  ETC
+//TODO: ADD PARMESAN, CHEESES ETC
 //TODO: ADD TESTING
 //TODO: ADD SELENIUM MANAGER
 //TODO: EQUAL PRODUCTS

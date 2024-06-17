@@ -19,7 +19,7 @@ public class Menu {
     private static String deodorant = "Dove advanced care coconut";
     private static String shampoo = "wash & go Σαμπουάν classic 650ml";
     private static String toastBread = "ψωμί τοστ Παπαδοπούλου γευση2 σταρένιο 700gr";
-    private static String mayo = "hellmann's light Μαγιονέζα 450ml";
+    private static String milk = "Δέλτα Καθημερινά Φρέσκο Γάλα Πλήρες 2 lt";
     private static final String noodlesCurry = "Μαggi noodles cup Κάρυ";
     private static String butter = "βούτυρο lurpak soft 225gr";
     private static String tuna = "Rio Mare Τόνος Σε Ελαιόλαδο 2x160gr";
@@ -47,7 +47,7 @@ public class Menu {
                 System.out.println("1. Deodorant");
                 System.out.println("2. Shampoo");
                 System.out.println("3. Toast Bread");
-                System.out.println("4. Mayo");
+                System.out.println("4. Milk");
                 System.out.println("5. Noodles Curry");
                 System.out.println("6. Butter");
                 System.out.println("7. Tuna");
@@ -74,8 +74,8 @@ public class Menu {
                         System.out.println();
                         break;
                     case 4:
-                        myList.add(mayo);
-                        System.out.println("Mayo added to list");
+                        myList.add(milk);
+                        System.out.println("Milk added to list");
                         System.out.println();
                         break;
                     case 5:
@@ -139,6 +139,9 @@ public class Menu {
             if (product.equals(rice)){
                 product = "Parboiled σακουλακι";
             }
+            if (product.equals(milk)){
+                product = "Γάλα Φρέσκο 2L";
+            }
             if (product.equals(deodorant)){
                 myMarket.getHomePage();
                 kritikosList.add(new Product("Noodles MISSING", myMarket.searchFor(product).getFirstResultProduct().getProductPrice()));
@@ -176,6 +179,9 @@ public class Menu {
             sklavenitis.getHomePage();
             if (product.equals("ψωμί τοστ Παπαδοπούλου γευση2 σταρένιο 700gr")){
                 product = "ψωμί τοστ παπαδοπουλου 700gr";
+            }
+            if (product.equals(milk)){
+                product = "ΔΕΛΤΑ Καθημερινά Φρέσκο Γάλα Πλήρες 2lt";
             }
             if (product.equals("Μαggi noodles cup Κάρυ")){
                 myMarket.getHomePage();
