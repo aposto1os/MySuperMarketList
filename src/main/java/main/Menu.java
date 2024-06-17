@@ -26,6 +26,7 @@ public class Menu {
     private static String rice = "ρύζι parboiled ben's σακουλακι";
     private static String toothpaste = "colgate οδοντοκρεμα triple action";
     //private static String dishwasherCaps = "fairy caps";
+    //anonymous list = {mayo marata, makaronia lidl}
     private static List<String> allProducts = Arrays.asList("tuna, riceMyMarket, dishwasherCapsMyMarket, laundryCapsMyMarket" +
             ", butter, noodlesCurry, mayo, toastBread, shampoo, deodorant");
 
@@ -129,6 +130,20 @@ public class Menu {
 
         for (String product: myList) {
             kritikos.getHomePage();
+            if (product.equals(noodlesCurry)){
+                product = "Μαggi curry";
+            }
+            if (product.equals(tuna)){
+                product = "Rio Mare Τόνος Σε Ελαιόλαδο";
+            }
+            if (product.equals(rice)){
+                product = "Parboiled σακουλακι";
+            }
+            if (product.equals(deodorant)){
+                myMarket.getHomePage();
+                kritikosList.add(new Product("Noodles MISSING", myMarket.searchFor(product).getFirstResultProduct().getProductPrice()));
+                continue;
+            }
             kritikosList.add(kritikos.searchFor(product).getFirstResultProduct());
         }
         return kritikosList;
