@@ -7,9 +7,8 @@ import java.util.Scanner;
 
 //TODO: SPECIFY QUANTITIES
 //TODO: resolve 1+1 offers (sklavenitis)
-//TODO: ADD PARMESAN, CHEESES ETC
+//TODO: ADD PARMESAN, CHEESES
 //TODO: ADD TESTING
-//TODO: ADD SELENIUM MANAGER
 //TODO: EQUAL PRODUCTS
 //TODO: REFACTOR MENU.CHEAPESTSOLUTION
 
@@ -20,7 +19,8 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     private static void setup(){
-        System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
+        //Doesn't need setProperty because Selenium 4.20 contains Selenium Manager.
+        //System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().minimize();
     }

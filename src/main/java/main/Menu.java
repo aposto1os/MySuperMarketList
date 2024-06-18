@@ -144,7 +144,7 @@ public class Menu {
             }
             if (product.equals(deodorant)){
                 myMarket.getHomePage();
-                kritikosList.add(new Product("Noodles MISSING", myMarket.searchFor(product).getFirstResultProduct().getProductPrice()));
+                kritikosList.add(new Product("deodorant MISSING", myMarket.searchFor(product).getFirstResultProduct().getProductPrice()));
                 continue;
             }
             kritikosList.add(kritikos.searchFor(product).getFirstResultProduct());
