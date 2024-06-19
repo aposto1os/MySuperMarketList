@@ -9,13 +9,27 @@ import sklavenitis.Sklavenitis;
 import java.util.*;
 
 public class Menu {
+
     private Scanner scanner;
     private WebDriver driver;
+
     private MyMarket myMarket;
     private Sklavenitis sklavenitis;
     private AB ab;
     private Kritikos kritikos;
+
     private List<String> myList = new ArrayList<>();
+    private ArrayList<Product> myMarketList = new ArrayList<>();
+    private ArrayList<Product> sklavenitisList = new ArrayList<>();
+    private ArrayList<Product> aBList = new ArrayList<>();
+    private ArrayList<Product> kritikosList = new ArrayList<>();
+    private ArrayList<Product> myMarketCheapestList = new ArrayList<>();
+    private ArrayList<Product> sklavenitisCheapestList = new ArrayList<>();
+    private ArrayList<Product> aBCheapestList = new ArrayList<>();
+    private ArrayList<Product> kritikosCheapestList = new ArrayList<>();
+
+    private double totalOfCheapest = 0;
+
     private static String deodorant = "Dove advanced care coconut";
     private static String shampoo = "wash & go Σαμπουάν classic 650ml";
     private static String toastBread = "ψωμί τοστ Παπαδοπούλου γευση2 σταρένιο 700gr";
@@ -27,8 +41,8 @@ public class Menu {
     private static String toothpaste = "colgate οδοντοκρεμα triple action";
     //private static String dishwasherCaps = "fairy caps";
     //anonymous list = {mayo marata, makaronia lidl}
-    private static List<String> allProducts = Arrays.asList("tuna, riceMyMarket, dishwasherCapsMyMarket, laundryCapsMyMarket" +
-            ", butter, noodlesCurry, mayo, toastBread, shampoo, deodorant");
+    private static List<String> allProducts = Arrays.asList(deodorant, shampoo, toastBread, milk, noodlesCurry,
+            butter, tuna, rice, toothpaste);
 
     public Menu(Scanner scanner, WebDriver driver) {
         this.scanner = scanner;
@@ -40,6 +54,13 @@ public class Menu {
     }
 
     public void menu(){
+        selectProducts();
+        calculateListForEachSuperMarket();
+        cheapestSolution();
+        printResults();
+    }
+
+    private void selectProducts(){
         int selection = 0;
         while (true){
             if (selection!=11){
@@ -109,11 +130,16 @@ public class Menu {
                 }
             }else break;
         }
-        cheapestSolution();
+    }
+
+    private void calculateListForEachSuperMarket(){
+        calculateTotalForMyMarket();
+        calculateTotalForSklavenitis();
+        calculateTotalForAB();
+        calculateTotalForKritikos();
     }
 
     private ArrayList<Product> calculateTotalForMyMarket(){
-        ArrayList<Product> myMarketList = new ArrayList<>();
 
         for (String product: myList) {
             myMarket.getHomePage();
@@ -126,7 +152,6 @@ public class Menu {
     }
 
     private ArrayList<Product> calculateTotalForKritikos(){
-        ArrayList<Product> kritikosList = new ArrayList<>();
 
         for (String product: myList) {
             kritikos.getHomePage();
@@ -143,8 +168,8 @@ public class Menu {
                 product = "Γάλα Φρέσκο 2L";
             }
             if (product.equals(deodorant)){
-                myMarket.getHomePage();
-                kritikosList.add(new Product("deodorant MISSING", myMarket.searchFor(product).getFirstResultProduct().getProductPrice()));
+                ab.getHomePage();
+                kritikosList.add(new Product("deodorant MISSING", ab.searchFor(product).getFirstResultProduct().getProductPrice()));
                 continue;
             }
             kritikosList.add(kritikos.searchFor(product).getFirstResultProduct());
@@ -153,7 +178,6 @@ public class Menu {
     }
 
     private ArrayList<Product> calculateTotalForAB(){
-        ArrayList<Product> aBList = new ArrayList<>();
 
         for (String product: myList) {
             ab.getHomePage();
@@ -173,7 +197,7 @@ public class Menu {
      * gets the price from MyMarket.
      */
     private ArrayList<Product> calculateTotalForSklavenitis(){
-        ArrayList<Product> sklavenitisList = new ArrayList<>();
+        //ArrayList<Product> sklavenitisList = new ArrayList<>();
 
         for (String product: myList) {
             sklavenitis.getHomePage();
@@ -194,15 +218,7 @@ public class Menu {
     }
 
     private void cheapestSolution(){
-        double totalOfCheapest = 0;
-        ArrayList<Product> myMarketList = calculateTotalForMyMarket();
-        ArrayList<Product> sklavenitisList = calculateTotalForSklavenitis();
-        ArrayList<Product> aBList = calculateTotalForAB();
-        ArrayList<Product> kritikosList = calculateTotalForKritikos();
-        ArrayList<Product> myMarketCheapestList = new ArrayList<>();
-        ArrayList<Product> sklavenitisCheapestList = new ArrayList<>();
-        ArrayList<Product> aBCheapestList = new ArrayList<>();
-        ArrayList<Product> kritikosCheapestList = new ArrayList<>();
+
         for (int i = 0; i < myMarketList.size(); i++) {
             ArrayList<Double> prices = new ArrayList<>();
             prices.add(myMarketList.get(i).getProductPrice());
@@ -227,7 +243,11 @@ public class Menu {
                     break;
             }
         }
+    }
 
+
+
+    private void printResults(){
         System.out.println("My Market");
         printShoppingList(myMarketList);
         System.out.println();
@@ -264,6 +284,7 @@ public class Menu {
 
         System.out.println("CHEAPEST SOLUTION TOTAL: " + totalOfCheapest);
     }
+
 
     private void printShoppingList(ArrayList<Product> list){
         double total = 0.0;

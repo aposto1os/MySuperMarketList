@@ -10,7 +10,7 @@ import java.util.Scanner;
 //TODO: ADD PARMESAN, CHEESES
 //TODO: ADD TESTING
 //TODO: EQUAL PRODUCTS
-//TODO: REFACTOR MENU.CHEAPESTSOLUTION
+
 
 
 public class Main {
