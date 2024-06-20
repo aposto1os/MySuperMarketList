@@ -19,6 +19,7 @@ public class Menu {
     private Kritikos kritikos;
 
     private List<String> myList = new ArrayList<>();
+    private ArrayList<Double> quantities = new ArrayList<>();
     private ArrayList<Product> myMarketList = new ArrayList<>();
     private ArrayList<Product> sklavenitisList = new ArrayList<>();
     private ArrayList<Product> aBList = new ArrayList<>();
@@ -80,46 +81,55 @@ public class Menu {
                 selection = scanner.nextInt();
                 switch (selection){
                     case 1:
+                        quantities.add(quantityOfProduct());
                         myList.add(deodorant);
                         System.out.println("Deodorant added to list");
                         System.out.println();
                         break;
                     case 2:
+                        quantities.add(quantityOfProduct());
                         myList.add(shampoo);
                         System.out.println("Shampoo added to list");
                         System.out.println();
                         break;
                     case 3:
+                        quantities.add(quantityOfProduct());
                         myList.add(toastBread);
                         System.out.println("Toast bread added to list");
                         System.out.println();
                         break;
                     case 4:
+                        quantities.add(quantityOfProduct());
                         myList.add(milk);
                         System.out.println("Milk added to list");
                         System.out.println();
                         break;
                     case 5:
+                        quantities.add(quantityOfProduct());
                         myList.add(noodlesCurry);
                         System.out.println("Noodles Curry added to list");
                         System.out.println();
                         break;
                     case 6:
+                        quantities.add(quantityOfProduct());
                         myList.add(butter);
                         System.out.println("Butter added to list");
                         System.out.println();
                         break;
                     case 7:
+                        quantities.add(quantityOfProduct());
                         myList.add(tuna);
                         System.out.println("Tuna added to list");
                         System.out.println();
                         break;
                     case 8:
+                        quantities.add(quantityOfProduct());
                         myList.add(rice);
                         System.out.println("rice added to list");
                         System.out.println();
                         break;
                     case 9:
+                        quantities.add(quantityOfProduct());
                         myList.add(toothpaste);
                         System.out.println("toothpaste added to list");
                         System.out.println();
@@ -137,6 +147,11 @@ public class Menu {
         calculateTotalForSklavenitis();
         calculateTotalForAB();
         calculateTotalForKritikos();
+    }
+
+    private double quantityOfProduct(){
+        System.out.print("Quantity: ");
+        return scanner.nextDouble();
     }
 
     private ArrayList<Product> calculateTotalForMyMarket(){
@@ -288,13 +303,13 @@ public class Menu {
 
     private void printShoppingList(ArrayList<Product> list){
         double total = 0.0;
-        System.out.println("-".repeat(99));
-        for (Product product : list) {
-            System.out.printf("| %-85s : %-7.2f |%n",product.getProductName(),product.getProductPrice());
-            total += product.getProductPrice();
+        System.out.println("-".repeat(125));
+        for (int i = 0; i < list.size(); i++) {
+            System.out.printf("| %-99s : %-4.2f x %-4.2f = %-4.2f |%n",list.get(i).getProductName(), list.get(i).getProductPrice(), quantities.get(i), list.get(i).getProductPrice() * quantities.get(i));
+            total += list.get(i).getProductPrice()*quantities.get(i);
         }
-        System.out.println("=".repeat(99));
-        System.out.printf("| %-85s : %-7.2f |%n","Total price: " , total);
-        System.out.println("-".repeat(99));
+        System.out.println("=".repeat(125));
+        System.out.printf("| %-113s : %-5.2f |%n","Total price: " , total);
+        System.out.println("-".repeat(125));
     }
 }

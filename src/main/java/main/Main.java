@@ -5,10 +5,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.Scanner;
 
-//TODO: SPECIFY QUANTITIES
+//TODO: FIX BUG WITH QUANTITIES IN CHEAPEST LISTS
 //TODO: ADD PARMESAN, CHEESES
 //TODO: ADD TESTING
 //TODO: EQUAL PRODUCTS
+//TODO: PRICES HISTORY
 
 
 
