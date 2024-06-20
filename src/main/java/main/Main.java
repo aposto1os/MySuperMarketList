@@ -6,7 +6,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.Scanner;
 
 //TODO: SPECIFY QUANTITIES
-//TODO: resolve 1+1 offers (sklavenitis)
 //TODO: ADD PARMESAN, CHEESES
 //TODO: ADD TESTING
 //TODO: EQUAL PRODUCTS

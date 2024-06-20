@@ -13,6 +13,7 @@ public class ResultsPageSklavenitis {
     private WebDriver driver;
     private By result = By.cssSelector("h4 a");
     private By resultPrice = By.cssSelector(".price");
+    private By offerLocator = By.cssSelector(".inner");
 
     public ResultsPageSklavenitis(WebDriver driver) {
         this.driver = driver;
@@ -24,6 +25,11 @@ public class ResultsPageSklavenitis {
         String price = driver.findElement(resultPrice).getText();
         price = price.replaceAll("[^0-9,]", "");
         price = price.replace(',','.');
-        return new Product(driver.findElement(result).getText(), Double.parseDouble(price));
+        if (driver.findElement(offerLocator).getText().contains("1+1")){
+            return new Product(driver.findElement(result).getText(), Double.parseDouble(price) / 2);
+        }else {
+            return new Product(driver.findElement(result).getText(), Double.parseDouble(price));
+        }
+
     }
 }
