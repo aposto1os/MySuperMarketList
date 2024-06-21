@@ -40,10 +40,11 @@ public class Menu {
     private static String tuna = "Rio Mare Τόνος Σε Ελαιόλαδο 2x160gr";
     private static String rice = "ρύζι parboiled ben's σακουλακι";
     private static String toothpaste = "colgate οδοντοκρεμα triple action";
+    private static String mexicanRice = "Ρύζι Μεξικάνικο";
     //private static String dishwasherCaps = "fairy caps";
     //anonymous list = {mayo marata, makaronia lidl}
     private static List<String> allProducts = Arrays.asList(deodorant, shampoo, toastBread, milk, noodlesCurry,
-            butter, tuna, rice, toothpaste);
+            butter, tuna, rice, mexicanRice, toothpaste);
 
     public Menu(Scanner scanner, WebDriver driver) {
         this.scanner = scanner;
@@ -64,7 +65,7 @@ public class Menu {
     private void selectProducts(){
         int selection = 0;
         while (true){
-            if (selection!=11){
+            if (selection!=12){
                 System.out.println("Please select a product (By number)");
                 System.out.println("1. Deodorant");
                 System.out.println("2. Shampoo");
@@ -74,9 +75,10 @@ public class Menu {
                 System.out.println("6. Butter");
                 System.out.println("7. Tuna");
                 System.out.println("8. Rice");
-                System.out.println("9. Toothpaste");
-                System.out.println("10. All Products");
-                System.out.println("11. List Completed");
+                System.out.println("9. Mexican Rice (Or Chinese from MyMarket)");
+                System.out.println("10. Toothpaste");
+                System.out.println("11. All Products");
+                System.out.println("12. List Completed");
                 System.out.print("Selection: ");
                 selection = scanner.nextInt();
                 switch (selection){
@@ -128,13 +130,19 @@ public class Menu {
                         System.out.println("rice added to list");
                         System.out.println();
                         break;
-                    case 9:
+                        case 9:
+                        quantities.add(quantityOfProduct());
+                        myList.add(mexicanRice);
+                        System.out.println("Mexican rice added to list");
+                        System.out.println();
+                        break;
+                    case 10:
                         quantities.add(quantityOfProduct());
                         myList.add(toothpaste);
                         System.out.println("toothpaste added to list");
                         System.out.println();
                         break;
-                    case 10:
+                    case 11:
                         myList = allProducts;
                         break;
                 }
@@ -161,6 +169,9 @@ public class Menu {
             if (product.equals("Dove advanced care coconut")){
                 product = "Dove advanced care coconut spray";
             }
+            if (product.equals(mexicanRice)){
+                product = "Ben's Original Ρύζι Κινέζικο";
+            }
             myMarketList.add(myMarket.searchFor(product).getFirstResultProduct());
         }
         return myMarketList;
@@ -185,6 +196,11 @@ public class Menu {
             if (product.equals(deodorant)){
                 ab.getHomePage();
                 kritikosList.add(new Product("deodorant MISSING", ab.searchFor(product).getFirstResultProduct().getProductPrice()));
+                continue;
+            }
+            if (product.equals(mexicanRice)){
+                ab.getHomePage();
+                kritikosList.add(new Product("Mexican rice MISSING", ab.searchFor(product).getFirstResultProduct().getProductPrice()));
                 continue;
             }
             kritikosList.add(kritikos.searchFor(product).getFirstResultProduct());
