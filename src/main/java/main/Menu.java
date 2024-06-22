@@ -321,7 +321,7 @@ public class Menu {
         double total = 0.0;
         System.out.println("-".repeat(125));
         for (int i = 0; i < list.size(); i++) {
-            System.out.printf("| %-99s : %-4.2f x %-4.2f = %-4.2f |%n",list.get(i).getProductName(), list.get(i).getProductPrice(), quantities.get(i), list.get(i).getProductPrice() * quantities.get(i));
+            System.out.printf("| %-97s : %-5.2f x %-5.2f = %-5.2f |%n",list.get(i).getProductName(), list.get(i).getProductPrice(), quantities.get(i), list.get(i).getProductPrice() * quantities.get(i));
             total += list.get(i).getProductPrice()*quantities.get(i);
         }
         System.out.println("=".repeat(125));

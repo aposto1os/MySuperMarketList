@@ -20,8 +20,8 @@ public class ResultsPageAb {
     }
 
     public Product getFirstResultProduct(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(resultPriceInt));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(result));
         String price = driver.findElement(resultPriceInt).getText() + "," + driver.findElement(resultPriceDec).getText();
         price = price.replaceAll("[^0-9,]", "");
         price = price.replace(',','.');
