@@ -28,6 +28,10 @@ public class Menu {
     private ArrayList<Product> sklavenitisCheapestList = new ArrayList<>();
     private ArrayList<Product> aBCheapestList = new ArrayList<>();
     private ArrayList<Product> kritikosCheapestList = new ArrayList<>();
+    ArrayList<Double> quantitiesMyMarket = new ArrayList<>();
+    ArrayList<Double> quantitiesSklavenitis = new ArrayList<>();
+    ArrayList<Double> quantitiesAb = new ArrayList<>();
+    ArrayList<Double> quantitiesKritikos = new ArrayList<>();
 
     private double totalOfCheapest = 0;
 
@@ -252,6 +256,7 @@ public class Menu {
 
         for (int i = 0; i < myMarketList.size(); i++) {
             ArrayList<Double> prices = new ArrayList<>();
+
             prices.add(myMarketList.get(i).getProductPrice());
             prices.add(sklavenitisList.get(i).getProductPrice());
             prices.add(aBList.get(i).getProductPrice());
@@ -262,67 +267,74 @@ public class Menu {
             switch (minIndex){
                 case 0:
                     myMarketCheapestList.add(myMarketList.get(i));
+                    quantitiesMyMarket.add(quantities.get(i));
                     break;
                 case 1:
                     sklavenitisCheapestList.add(sklavenitisList.get(i));
+                    quantitiesSklavenitis.add(quantities.get(i));
                     break;
                 case 2:
                     aBCheapestList.add(aBList.get(i));
+                    quantitiesAb.add(quantities.get(i));
                     break;
                 case 3:
                     kritikosCheapestList.add(kritikosList.get(i));
+                    quantitiesKritikos.add(quantities.get(i));
                     break;
             }
         }
+
     }
 
 
 
     private void printResults(){
         System.out.println("My Market");
-        printShoppingList(myMarketList);
+        printShoppingList(myMarketList, quantities);
         System.out.println();
         System.out.println("Sklavenitis");
-        printShoppingList(sklavenitisList);
+        printShoppingList(sklavenitisList, quantities);
         System.out.println();
         System.out.println("AB");
-        printShoppingList(aBList);
+        printShoppingList(aBList, quantities);
+        System.out.println();
         System.out.println("Kritikos");
-        printShoppingList(kritikosList);
+        printShoppingList(kritikosList, quantities);
+        System.out.println();
+        System.out.println();
         System.out.println("My Market Cheapest");
-        printShoppingList(myMarketCheapestList);
+        printShoppingList(myMarketCheapestList, quantitiesMyMarket);
         System.out.println();
         System.out.println("Sklavenitis Cheapest");
-        printShoppingList(sklavenitisCheapestList);
+        printShoppingList(sklavenitisCheapestList, quantitiesSklavenitis);
         System.out.println();
         System.out.println("AB Cheapest");
-        printShoppingList(aBCheapestList);
+        printShoppingList(aBCheapestList,quantitiesAb);
         System.out.println();
         System.out.println("Kritikos Cheapest");
-        printShoppingList(kritikosCheapestList);
-        for (Product product:myMarketCheapestList) {
-            totalOfCheapest += product.getProductPrice();
+        printShoppingList(kritikosCheapestList, quantitiesKritikos);
+        for (int i = 0; i < myMarketCheapestList.size(); i++) {
+            totalOfCheapest += myMarketCheapestList.get(i).getProductPrice() * quantitiesMyMarket.get(i);
         }
-        for (Product product:sklavenitisCheapestList) {
-            totalOfCheapest += product.getProductPrice();
+        for (int i = 0; i < sklavenitisCheapestList.size(); i++) {
+            totalOfCheapest += sklavenitisCheapestList.get(i).getProductPrice() * quantitiesSklavenitis.get(i);
         }
-        for (Product product:aBCheapestList) {
-            totalOfCheapest += product.getProductPrice();
+        for (int i = 0; i < aBCheapestList.size(); i++) {
+            totalOfCheapest += aBCheapestList.get(i).getProductPrice() * quantitiesAb.get(i);
+        }for (int i = 0; i < kritikosCheapestList.size(); i++) {
+            totalOfCheapest += kritikosCheapestList.get(i).getProductPrice() * quantitiesKritikos.get(i);
         }
-        for (Product product:kritikosCheapestList) {
-            totalOfCheapest += product.getProductPrice();
-        }
-
-        System.out.println("CHEAPEST SOLUTION TOTAL: " + totalOfCheapest);
+        System.out.println();
+        System.out.println("CHEAPEST SOLUTION TOTAL: " + " ".repeat(70) + totalOfCheapest);
     }
 
 
-    private void printShoppingList(ArrayList<Product> list){
+    private void printShoppingList(ArrayList<Product> list, ArrayList<Double> qty){
         double total = 0.0;
         System.out.println("-".repeat(125));
         for (int i = 0; i < list.size(); i++) {
-            System.out.printf("| %-97s : %-5.2f x %-5.2f = %-5.2f |%n",list.get(i).getProductName(), list.get(i).getProductPrice(), quantities.get(i), list.get(i).getProductPrice() * quantities.get(i));
-            total += list.get(i).getProductPrice()*quantities.get(i);
+            System.out.printf("| %-97s : %-5.2f x %-5.2f = %-5.2f |%n",list.get(i).getProductName(), list.get(i).getProductPrice(), qty.get(i), list.get(i).getProductPrice() * qty.get(i));
+            total += list.get(i).getProductPrice()*qty.get(i);
         }
         System.out.println("=".repeat(125));
         System.out.printf("| %-113s : %-5.2f |%n","Total price: " , total);
