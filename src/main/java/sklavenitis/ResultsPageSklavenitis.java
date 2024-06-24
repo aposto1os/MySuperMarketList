@@ -25,11 +25,14 @@ public class ResultsPageSklavenitis {
         String price = driver.findElement(resultPrice).getText();
         price = price.replaceAll("[^0-9,]", "");
         price = price.replace(',','.');
-        if (driver.findElement(offerLocator).getText().contains("1+1")){
-            return new Product(driver.findElement(result).getText(), Double.parseDouble(price) / 2);
-        }else {
+        try {
+            if (driver.findElement(offerLocator).getText().contains("1+1")){
+                return new Product(driver.findElement(result).getText(), Double.parseDouble(price) / 2);
+            }else {
+                return new Product(driver.findElement(result).getText(), Double.parseDouble(price));
+            }
+        }catch (Exception e){
             return new Product(driver.findElement(result).getText(), Double.parseDouble(price));
         }
-
     }
 }

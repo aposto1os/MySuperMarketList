@@ -45,10 +45,11 @@ public class Menu {
     private static String rice = "ρύζι parboiled ben's σακουλακι";
     private static String toothpaste = "colgate οδοντοκρεμα triple action";
     private static String mexicanRice = "Ρύζι Μεξικάνικο";
+    private static String greekCoffee = "ΛΟΥΜΙΔΗΣ ΠΑΠΑΓΑΛΟΣ Παραδοσιακός Ελληνικός Καφές 194gr";
     //private static String dishwasherCaps = "fairy caps";
     //anonymous list = {mayo marata, makaronia lidl}
     private static List<String> allProducts = Arrays.asList(deodorant, shampoo, toastBread, milk, noodlesCurry,
-            butter, tuna, rice, mexicanRice, toothpaste);
+            butter, tuna, rice, mexicanRice, toothpaste, greekCoffee);
 
     public Menu(Scanner scanner, WebDriver driver) {
         this.scanner = scanner;
@@ -69,7 +70,7 @@ public class Menu {
     private void selectProducts(){
         int selection = 0;
         while (true){
-            if (selection!=12){
+            if (selection!=20){
                 System.out.println("Please select a product (By number)");
                 System.out.println("1. Deodorant");
                 System.out.println("2. Shampoo");
@@ -81,8 +82,9 @@ public class Menu {
                 System.out.println("8. Rice");
                 System.out.println("9. Mexican Rice (Or Chinese from MyMarket)");
                 System.out.println("10. Toothpaste");
-                System.out.println("11. All Products");
-                System.out.println("12. List Completed");
+                System.out.println("11. Greek Coffee");
+                System.out.println("12. All Products");
+                System.out.println("20. List Completed");
                 System.out.print("Selection: ");
                 selection = scanner.nextInt();
                 switch (selection){
@@ -147,6 +149,12 @@ public class Menu {
                         System.out.println();
                         break;
                     case 11:
+                        quantities.add(quantityOfProduct());
+                        myList.add(greekCoffee);
+                        System.out.println("Greek coffee added to list");
+                        System.out.println();
+                        break;
+                    case 12:
                         myList = allProducts;
                         break;
                 }
@@ -222,6 +230,10 @@ public class Menu {
             if (product.equals(noodlesCurry)){
                 product = "Noodle Cup Magic Asia Κάρυ 63g";
             }
+            if (product.equals(greekCoffee)){
+                product = "ΛΟΥΜΙΔΗΣ | Καφές Ελληνικός Παραδοσιακός 194g";
+            }
+
             aBList.add(ab.searchFor(product).getFirstResultProduct());
         }
         return aBList;
@@ -283,12 +295,29 @@ public class Menu {
                     break;
             }
         }
+    }
 
+    private void calculateTotalForCheapestSolution(){
+        for (int i = 0; i < myMarketCheapestList.size(); i++) {
+            totalOfCheapest += myMarketCheapestList.get(i).getProductPrice() * quantitiesMyMarket.get(i);
+        }
+        for (int i = 0; i < sklavenitisCheapestList.size(); i++) {
+            totalOfCheapest += sklavenitisCheapestList.get(i).getProductPrice() * quantitiesSklavenitis.get(i);
+        }
+        for (int i = 0; i < aBCheapestList.size(); i++) {
+            totalOfCheapest += aBCheapestList.get(i).getProductPrice() * quantitiesAb.get(i);
+        }for (int i = 0; i < kritikosCheapestList.size(); i++) {
+            totalOfCheapest += kritikosCheapestList.get(i).getProductPrice() * quantitiesKritikos.get(i);
+        }
+        System.out.println();
+        System.out.printf("| %-113s : %-5.2f |%n","CHEAPEST SOLUTION TOTAL: " , totalOfCheapest);
+        //System.out.println("CHEAPEST SOLUTION TOTAL: " + " ".repeat(92) + totalOfCheapest);
     }
 
 
 
     private void printResults(){
+        System.out.println();
         System.out.println("My Market");
         printShoppingList(myMarketList, quantities);
         System.out.println();
@@ -313,19 +342,7 @@ public class Menu {
         System.out.println();
         System.out.println("Kritikos Cheapest");
         printShoppingList(kritikosCheapestList, quantitiesKritikos);
-        for (int i = 0; i < myMarketCheapestList.size(); i++) {
-            totalOfCheapest += myMarketCheapestList.get(i).getProductPrice() * quantitiesMyMarket.get(i);
-        }
-        for (int i = 0; i < sklavenitisCheapestList.size(); i++) {
-            totalOfCheapest += sklavenitisCheapestList.get(i).getProductPrice() * quantitiesSklavenitis.get(i);
-        }
-        for (int i = 0; i < aBCheapestList.size(); i++) {
-            totalOfCheapest += aBCheapestList.get(i).getProductPrice() * quantitiesAb.get(i);
-        }for (int i = 0; i < kritikosCheapestList.size(); i++) {
-            totalOfCheapest += kritikosCheapestList.get(i).getProductPrice() * quantitiesKritikos.get(i);
-        }
-        System.out.println();
-        System.out.println("CHEAPEST SOLUTION TOTAL: " + " ".repeat(70) + totalOfCheapest);
+        calculateTotalForCheapestSolution();
     }
 
 
