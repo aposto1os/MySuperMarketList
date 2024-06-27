@@ -156,6 +156,9 @@ public class Menu {
                         break;
                     case 12:
                         myList = allProducts;
+                        for (int i = 0; i < myList.size(); i++) {
+                            quantities.add(1.0);
+                        }
                         break;
                 }
             }else break;
