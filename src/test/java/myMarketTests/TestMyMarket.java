@@ -64,9 +64,15 @@ public class TestMyMarket{
     }
 
     @Test
-    public void testCofee(){
+    public void testCoffee(){
         String returnedProductName = getProductName("ΛΟΥΜΙΔΗΣ ΠΑΠΑΓΑΛΟΣ Παραδοσιακός Ελληνικός Καφές 194gr");
         Assert.assertEquals(returnedProductName, "ΛΟΥΜΙΔΗΣ ΠΑΠΑΓΑΛΟΣ Παραδοσιακός Ελληνικός Καφές 194gr", "Incorrect product returned!");
+    }
+
+    @Test
+    public void testToothpaste(){
+        String returnedProductName = getProductName("COLGATE Total Fresh");
+        Assert.assertEquals(returnedProductName, "Colgate Total Active Fresh Οδοντόκρεμα 75ml", "Incorrect product returned!");
     }
 
     private String getProductName(String product){

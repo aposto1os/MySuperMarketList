@@ -43,7 +43,7 @@ public class Menu {
     private static String butter = "βούτυρο lurpak soft 225gr";
     private static String tuna = "Rio Mare Τόνος Σε Ελαιόλαδο 2x160gr";
     private static String rice = "ρύζι parboiled ben's σακουλακι";
-    private static String toothpaste = "colgate οδοντοκρεμα triple action";
+    private static String toothpaste = "COLGATE Total Active Fresh";
     private static String mexicanRice = "Ρύζι Μεξικάνικο";
     private static String greekCoffee = "ΛΟΥΜΙΔΗΣ ΠΑΠΑΓΑΛΟΣ Παραδοσιακός Ελληνικός Καφές 194gr";
     //private static String dishwasherCaps = "fairy caps";
@@ -207,6 +207,9 @@ public class Menu {
             }
             if (product.equals(milk)){
                 product = "Γάλα Φρέσκο 2L";
+            }
+            if (product.equals(toothpaste)){
+                product = "COLGATE Total Fresh";
             }
             if (product.equals(deodorant)){
                 ab.getHomePage();

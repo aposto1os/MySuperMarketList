@@ -5,7 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.Scanner;
 
-//TODO: SEE THE PROBLEM WITH TOOTHPASTE
 //TODO: ADD PARMESAN, CHEESES
 //TODO: ADD TESTING
 //TODO: EQUAL PRODUCTS
