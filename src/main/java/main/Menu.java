@@ -38,7 +38,7 @@ public class Menu {
     private static String deodorant = "Dove advanced care coconut";
     private static String shampoo = "wash & go Σαμπουάν classic 650ml";
     private static String toastBread = "ψωμί τοστ Παπαδοπούλου γευση2 σταρένιο 700gr";
-    private static String milk = "Δέλτα Καθημερινά Φρέσκο Γάλα Πλήρες 2 lt";
+    private static String milk = "ΔΕΛΤΑ Καθημερινά Φρέσκο Γάλα Πλήρες 1lt";
     private static final String noodlesCurry = "Μαggi noodles cup Κάρυ";
     private static String butter = "βούτυρο lurpak soft 225gr";
     private static String tuna = "Rio Mare Τόνος Σε Ελαιόλαδο 2x160gr";
@@ -206,7 +206,7 @@ public class Menu {
                 product = "Parboiled σακουλακι";
             }
             if (product.equals(milk)){
-                product = "Γάλα Φρέσκο 2L";
+                product = "ΔΕΛΤΑ Καθημερινά Φρέσκο Γάλα Πλήρες 1lt";
             }
             if (product.equals(toothpaste)){
                 product = "COLGATE Total Fresh";
@@ -258,7 +258,7 @@ public class Menu {
                 product = "ψωμί τοστ παπαδοπουλου 700gr";
             }
             if (product.equals(milk)){
-                product = "ΔΕΛΤΑ Καθημερινά Φρέσκο Γάλα Πλήρες 2lt";
+                product = "ΔΕΛΤΑ Καθημερινά Φρέσκο Γάλα Πλήρες 1lt";
             }
             if (product.equals("Μαggi noodles cup Κάρυ")){
                 myMarket.getHomePage();

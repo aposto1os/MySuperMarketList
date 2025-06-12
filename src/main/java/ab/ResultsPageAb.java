@@ -11,9 +11,9 @@ import java.time.Duration;
 public class ResultsPageAb {
 
     private WebDriver driver;
-    private By result = By.cssSelector(".product-item .ireisQ");
-    private By resultPriceInt = By.cssSelector(".sc-y4jrw3-19 .sc-bw95zp-9");
-    private By resultPriceDec = By.cssSelector(".sc-y4jrw3-19 .sc-bw95zp-10");
+    private By result = By.xpath("//a[@title='ΔΕΛΤΑ Γάλα Φρέσκο Καθημερινά Πλήρες 1lt']");
+    private By resultPriceInt = By.xpath("(//span[text()='Γάλα Φρέσκο Καθημερινά Πλήρες 1lt']/parent::a/parent::h3/parent::div//following-sibling::div//div[@data-testid='product-block-price']/div)[2]");
+    private By resultPriceDec = By.xpath("//span[text()='Γάλα Φρέσκο Καθημερινά Πλήρες 1lt']/parent::a/parent::h3/parent::div//following-sibling::div//div[@data-testid='product-block-price']/sup");
 
     public ResultsPageAb(WebDriver driver) {
         this.driver = driver;

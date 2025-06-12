@@ -2,6 +2,7 @@ package main;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.Scanner;
 
@@ -17,11 +18,17 @@ public class Main {
     private static WebDriver driver;
     private static Scanner scanner = new Scanner(System.in);
 
-    private static void setup(){
+    private static void setup()  {
         //Doesn't need setProperty because Selenium 4.20 contains Selenium Manager.
         //System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().minimize();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-minimized");
+        options.addArguments("--disable-search-engine-choice-screen");
+        driver = new ChromeDriver(options);
+
+        //driver.manage().window().minimize();
+        //driver = new ChromeDriver();
+
     }
 
     private static void teardown(){

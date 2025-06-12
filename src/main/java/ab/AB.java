@@ -8,7 +8,7 @@ public class AB {
 
     private WebDriver driver;
     private String homepageUrl = "https://www.ab.gr/";
-    //private By declineCookiesButton = By.id("CybotCookiebotDialogBodyButtonDecline");
+    private By declineCookiesButton = By.xpath("//button[@data-testid='cookie-popup-reject']");
     private By searchBar = By.cssSelector("header form input");
 
     public AB(WebDriver driver) {
@@ -18,7 +18,7 @@ public class AB {
     public void getHomePage(){
         driver.get(homepageUrl);
         driver.manage().window().maximize();
-        //driver.findElement(declineCookiesButton).click();
+        driver.findElement(declineCookiesButton).click();
     }
 
     public ResultsPageAb searchFor(String product){

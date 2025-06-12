@@ -30,7 +30,7 @@ public class TestMyMarket{
 
     @Test
     public void testMilk(){
-        String returnedProductName = getProductName("Δέλτα Καθημερινά Φρέσκο Γάλα Πλήρες 2 lt");
+        String returnedProductName = getProductName("ΔΕΛΤΑ Καθημερινά Φρέσκο Γάλα Πλήρες 1lt");
         Assert.assertEquals(returnedProductName, "Δέλτα Καθημερινά Φρέσκο Γάλα Πλήρες 2 lt", "Incorrect product returned!");
     }
 
