@@ -11,8 +11,8 @@ import java.time.Duration;
 public class ResultsPageKritikos {
 
     private WebDriver driver;
-    private By result = By.cssSelector(".ProductListItem_title__e6MEz");
-    private By resultPrice = By.cssSelector(".ProductListItem_finalPrice__sEMjs");
+    private By result = By.xpath("//p[text()='ΔΕΛΤΑ Καθημερινά Πλήρες 3,5%']");
+    private By resultPrice = By.xpath("//p[text()='ΔΕΛΤΑ Καθημερινά Πλήρες 3,5%']/ancestor::a/following-sibling::div//p");
 
     public ResultsPageKritikos(WebDriver driver) {
         this.driver = driver;

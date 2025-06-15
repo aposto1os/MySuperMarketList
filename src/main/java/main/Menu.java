@@ -206,7 +206,7 @@ public class Menu {
                 product = "Parboiled σακουλακι";
             }
             if (product.equals(milk)){
-                product = "ΔΕΛΤΑ Καθημερινά Φρέσκο Γάλα Πλήρες 1lt";
+                product = "ΔΕΛΤΑ Καθημερινά Πλήρες";
             }
             if (product.equals(toothpaste)){
                 product = "COLGATE Total Fresh";
